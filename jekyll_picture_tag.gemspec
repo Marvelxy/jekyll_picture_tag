@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   # rainbow is used to colorize terminal output.
   spec.add_runtime_dependency 'rainbow', '~> 3.0'
   # ruby-vips interfaces with libvips.
-  spec.add_runtime_dependency 'ruby-vips', '~> 2.0.17'
+  spec.add_runtime_dependency 'ruby-vips', '~> 2.2'
 
   # libvips handles all image processing operations.
   spec.requirements << 'libvips'
@@ -48,7 +48,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'minitest', '~> 5.14'
   spec.add_development_dependency 'minitest-rg'
-  spec.add_development_dependency 'mocha', '~> 1.9'
+  spec.add_development_dependency 'mocha', '~> 2.1'
   spec.add_development_dependency 'nokogiri', '~> 1.1'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rake', '~> 12.3'
@@ -57,5 +57,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-performance', '~> 1.9.0'
   spec.add_development_dependency 'rubocop-rake', '~> 0.5.0'
   spec.add_development_dependency 'simplecov', '~> 0.20.0'
-  spec.add_development_dependency 'solargraph'
 end

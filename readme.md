@@ -1,31 +1,17 @@
 # Jekyll Picture Tag
 
-## Help Wanted
-
-My life just got a lot busier; I'd really like a maintainer or two to help. I'm not abandoning JPT,
-I just don't have a ton of time to put into hacking on it.
-
-If you've been learning Ruby and you want to move beyond tutorials and throwaway projects, I'd love
-to hear from you. I'd be happy to help you gain experience and credibility, if you're willing to
-help me maintain this project!
-
-If you're interested, contact me: robert@buchberger.cc
-
-![Logo](docs/logo.svg)
-
-![Tests & Formatting](https://github.com/rbuchberger/jekyll_picture_tag/workflows/Tests%20&%20Formatting/badge.svg)
-
 **Responsive Images done correctly.**
 
-It's simple to throw a photo on a page and call it a day, but doing justice to users on all
-different browsers and devices is tedious and tricky. Tedious, tricky things should be automated. 
-[This blog post further elaborates on that theme.](https://robert-buchberger.com/blog/2021/responsive_images.html)
-
+![Logo](docs/logo.png)
 
 Jekyll Picture Tag automatically builds cropped, resized, and reformatted images, builds several
 kinds of markup, offers extensive configuration while requiring none, and solves both the art
 direction and resolution switching problems with a little YAML configuration and a simple template
 tag.
+
+It's simple to throw a photo on a page and call it a day, but doing justice to users on all
+different browsers and devices is tedious and tricky.
+[Tedious, tricky things should be automated](https://robert-buchberger.com/blog/2021/responsive_images.html).
 
 ## Why use Responsive Images?
 
@@ -50,16 +36,29 @@ Tag is your responsive images minion - give it simple instructions and it'll han
 * Configure it easily, or not at all.
 * Make Lighthouse happy.
 
-## Documentation:
+## Documentation
 
-https://rbuchberger.github.io/jekyll_picture_tag/
+<https://rbuchberger.github.io/jekyll_picture_tag/>
 
-## Changelog:
+## Changelog
 
-https://rbuchberger.github.io/jekyll_picture_tag/devs/releases
+<https://rbuchberger.github.io/jekyll_picture_tag/devs/releases>
 
-Recent releases:
+2.0 and later releases:
 
+* 2.1.3 10 June, 2025
+  * Decide whether to call `magick` or `convert` more intelligently. This adds Windows support, without breaking JPT on Ubuntu or other distros that only ship an ancient version of ImageMagick. Thanks to [@MUmarShahbaz](https://github.com/MUmarShahbaz) for [#324](https://github.com/rbuchberger/jekyll_picture_tag/pull/324)
+* 2.1.2 13 September, 2024
+  * Remove overly specific version spec for ruby-vips - thanks to [@hschne](https://github.com/hschne) for [#313](https://github.com/rbuchberger/jekyll_picture_tag/pull/313)
+* 2.1.1 20 July, 2024
+  * Don't provide Q setting for PPM images - thanks to [@dichiban](https://github.com/dichiban) for [#309](https://github.com/rbuchberger/jekyll_picture_tag/pull/309)
+  * Fix alpha premultiplication - thanks to [@KaarlisCaune](https://github.com/kaarliscaune) for [#302](https://github.com/rbuchberger/jekyll_picture_tag/pull/302)
+* 2.1.0 29 January, 2024
+  * Check whether the vips CLI is installed before trying to use it. Thanks to [@philrb](https://github.com/philrb) for
+    [#299](https://github.com/rbuchberger/jekyll_picture_tag/pull/299)
+  * Update minimum required mocha version to maintain compatibility with minitest
+* 2.0.4 August 16, 2022
+  * Fix backend format support detection for new versions of libvips & imagemagick
 * 2.0.3 April 1, 2021
   * Improve backend format support detection
 * 2.0.2 March 31, 2021
@@ -80,11 +79,11 @@ Recent releases:
   * Require Ruby >= 2.6, support Ruby 3.0
   * Require Jekyll >= 4.0
   * Cropping is changing.
-      * We now use the libvips
+    * We now use the libvips
         [smartcrop function](https://www.rubydoc.info/gems/ruby-vips/Vips/Image#smartcrop-instance_method),
         which does some magic to keep the most useful part of the image.
-      * Geometry is renamed to 'crop', and reduced to simple aspect ratios only. (`width:height`)
-      * Gravity is gone, replaced by 'keep' which is translated to a libvips
+    * Geometry is renamed to 'crop', and reduced to simple aspect ratios only. (`width:height`)
+    * Gravity is gone, replaced by 'keep' which is translated to a libvips
         [interestingness](https://www.rubydoc.info/gems/ruby-vips/Vips/Interesting) setting.
   * Add stock presets and media queries, under the `jpt-` prefix.
   * Add `format_quality` default settings for webp, avif, and jp2.
@@ -95,19 +94,3 @@ Recent releases:
   * Drop support for `markup_presets` and `media_presets`. They are now
     officially and only `presets` and `media_queries`.
   * Improve docs with an introductory tutorial and 'how-to' flow.
-
-* 1.14.0 January 10, 2021
-  * Gracefully handle empty tag arguments.
-  * Re-add metadata stripping. I removed it inadvertently when refactoring; now
-    there's a test and a setting to turn it off.
-  * Respect Jekyll's `--disable-disk-cache` argument.
-  * Add baseurl configuration, allowing increased plugin support (such as I18n via `jekyll-multiple-languages-plugin`)
-  * Tooling & test suite maintenance and improvements.
-
-## Help Wanted
-
-Writing code is only part of the job; often the harder part is knowing what needs to be changed. Any
-and all feedback is greatly appreciated, especially in regards to documentation. What are your pain
-points? See the [contributing
-guidelines](https://rbuchberger.github.io/jekyll_picture_tag/devs/contributing), or the
-[issues](https://github.com/rbuchberger/jekyll_picture_tag/issues) page for more.

@@ -57,9 +57,9 @@ module PictureTag
 
       opts[:strip] = PictureTag.preset['strip_metadata']
 
-      # gifs don't accept a quality setting, and PNGs don't on older versions of
+      # gifs don't accept a quality setting, and PNGs and PPMs don't on older versions of
       # vips. Since it's not remarkably useful anyway, we'll ignore them.
-      opts[quality_key] = base.quality unless %w[gif png].include? base.format
+      opts[quality_key] = base.quality unless %w[gif png ppm].include? base.format
 
       opts.transform_keys(&:to_sym)
     end
@@ -86,7 +86,13 @@ module PictureTag
     end
 
     def resize(image)
-      image.resize(scale_value)
+      if image.has_alpha?
+        image = image.premultiply
+        image = image.resize(scale_value)
+        image.unpremultiply
+      else
+        image.resize(scale_value)
+      end
     end
 
     def crop(image)

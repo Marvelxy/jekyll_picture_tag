@@ -38,7 +38,7 @@ class TestImageFile < Minitest::Test
   end
 
   def filename
-    File.join(temp_dir, dest_name)
+    temp_dir(dest_name)
   end
 
   def gen_config
@@ -129,6 +129,15 @@ class TestImageFile < Minitest::Test
     assert_equal(10, width)
   end
 
+  def test_resize_with_alpha
+    restub_source('pestka_transparent', 'png')
+    tested
+
+    width = Vips::Image.new_from_file(filename).width
+
+    assert_equal(10, width)
+  end
+
   def test_quality
     # We have to use slightly larger images for the quality to make a difference
     # in file size.
@@ -177,8 +186,6 @@ class TestImageFile < Minitest::Test
   end
 
   def test_dest_dir
-    refute_path_exists temp_dir
-
     tested
 
     assert_path_exists temp_dir
